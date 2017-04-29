@@ -87,6 +87,8 @@ class HellspyContentProvider(ContentProvider):
             entry = m.group(0)
             item = self.video_item()
             murl = re.search('<[hH]3><a href=\"(?P<url>[^\"]+)[^>]+>(?P<name>[^<]+)',entry)
+            if murl is None:
+                continue
             item['url'] = murl.group('url')
             item['title'] = murl.group('name')
             mimg = re.search('<img src=\"(?P<img>[^\"]+)',entry)
